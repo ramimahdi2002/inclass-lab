@@ -17,7 +17,7 @@
     <input type="text" id="lastname" name="lastname">
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" >
+    <input type="input" id="email" name="email">
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password">
@@ -31,7 +31,9 @@
         <option value="female">Female</option>
     </select>
 
-    <button type="submit">Register</button>
+        
+        <form><button>register</button></form>
+
 </form>
 
 @endsection

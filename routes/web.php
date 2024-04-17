@@ -8,6 +8,7 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\InvokableController;
 use App\Http\Controllers\categories;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\userController as ControllersUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,13 @@ Route::get('deleteById/{id}', [categories::class, 'deleteById']);
 Route::get('deleteMass', [categories::class, 'deleteMass']);
 
 
-Route::post('/signup', [UserController::class, 'register'])->name('register.user');
+Route::post('/signup', [UserController::class, 'store'])->name('register.user');
+
 Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
+
+Route::get('/display', [ControllersUserController::class, 'index'])->name('list-users');
+Route::get('delete-shop/{id}',[ControllersUserController::class,'destroy'])->name('delete-user');
+Route::get('/display/{id}', [ControllersUserController::class, 'edit'])->name('edit-user');
+Route::post('update-user/{id}',[ControllersUserController::class,'update'])->name('update-user');
