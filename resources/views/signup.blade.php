@@ -15,6 +15,10 @@
 
     <label for="lastname">Last Name:</label>
     <input type="text" id="lastname" name="lastname">
+    @error('lastname')
+        <div class="alert alert-danger">{{ $message }}</div>
+     @enderror
+ 
 
     <label for="email">Email:</label>
     <input type="input" id="email" name="email">
