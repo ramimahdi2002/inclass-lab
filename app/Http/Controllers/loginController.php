@@ -15,16 +15,20 @@ class loginController extends Controller
             'password' => 'required',
         ]);
 
-       
+        // Find the user by email
         $user = User::where('email', $request->email)->first();
 
-        
-        if ($user->role === 'Admin' && Hash::check($request->password, $user->password)) {
-            return redirect()->route('addMovie');
-            // return 'ok';
+        // If no user is found, redirect back with an error message
+        if (!$user) {
+            return redirect()->back()->withInput()->withErrors(['email' => 'User not found']);
         }
-        else {
-            // return redirect()->route('listDr');
+
+        // Check if the user is an Admin and the password is correct
+        if ($user->role === 'Admin' && Hash::check($request->password, $user->password)) {
+            return redirect()->route('tasks.create');
+        } else {
+            // Redirect back with an error message for incorrect credentials
+            return redirect()->back()->withInput()->withErrors(['password' => 'Invalid password']);
         }
     }
 }

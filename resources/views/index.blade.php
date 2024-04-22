@@ -25,6 +25,7 @@
                     <td>
                         <a href="{{route('delete-movie', ['id'=>$movie->id])}}" >delete</a>
                         <a href="" >edit</a>
+                        <a href="{{route('addMovie')}}" >add</a>
                     </td>
                         
                 </tr>

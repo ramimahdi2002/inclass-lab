@@ -18,6 +18,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userController as ControllersUserController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,11 +66,11 @@ Route::get('deleteById/{id}', [categories::class, 'deleteById']);
 Route::get('deleteMass', [categories::class, 'deleteMass']);
 
 
-Route::post('/signup', [UserController::class, 'store'])->name('register.user');
+Route::post('/register', [UserController::class, 'store'])->name('register.user');
 
-Route::get('/signup', function () {
-    return view('signup');
-})->name('signup');
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 
 Route::get('/display', [ControllersUserController::class, 'index'])->name('list-users');
 Route::get('delete-shop/{id}',[ControllersUserController::class,'destroy'])->name('delete-user');
@@ -136,3 +137,12 @@ Route::post('addSchedule', [DoctorAvailibilityController::class, 'store'])->name
 // Route::get('addScheduleDr', [DoctorsController::class, 'addDr'])->name('addScheduleDr');
 
 Route::get('/listDr', [ListDoctorsController::class, 'index'])->name('listDr');
+
+
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/tasks/sortByPriority', [TaskController::class, 'sortByPriority'])->name('tasks.sortByPriority');
